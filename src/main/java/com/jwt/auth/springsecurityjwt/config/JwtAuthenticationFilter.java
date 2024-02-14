@@ -14,6 +14,7 @@
  */
 package com.jwt.auth.springsecurityjwt.config;
 
+import com.jwt.auth.springsecurityjwt.service.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -31,6 +32,8 @@ import java.io.IOException;
 @Service
 @RequiredArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
+
+    private final JwtService jwtService;
 
     /**
      * @note The parameters should not be empty!
@@ -52,19 +55,21 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
          */
         /* The header on User request should have an Auth token */
         final String authHeader = request.getHeader("Authorization");      // We try to extract that from the header
-        /* The JWT is initiated here */
-        final String jwt;
-
         if(authHeader == null || authHeader.isBlank() || authHeader.isEmpty()
             && !authHeader.startsWith("Bearer ")) {
             filterChain.doFilter(request, response);
             /* Stop the execution of security filter chain here */ return;
         }
 
+        /* The JWT and JWT Service is initiated here */
+        /* username and email are extracted from JWT token */
+        final String username; final String email;
+        final String jwt;
         /**
          * Extracting the jwt
          */
         jwt = authHeader.substring(7);
-//        jwt = authHeader.replace("Bearer", "").trim();
+        username = jwtService.extractUsername(jwt);
+        email = jwtService.extractEmail(jwt);
     }
 }
