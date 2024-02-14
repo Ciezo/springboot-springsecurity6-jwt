@@ -50,5 +50,21 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
          * @// TODO: 2/14/2024
          * Implement a check jwt auth filter
          */
+        /* The header on User request should have an Auth token */
+        final String authHeader = request.getHeader("Authorization");      // We try to extract that from the header
+        /* The JWT is initiated here */
+        final String jwt;
+
+        if(authHeader == null || authHeader.isBlank() || authHeader.isEmpty()
+            && !authHeader.startsWith("Bearer ")) {
+            filterChain.doFilter(request, response);
+            /* Stop the execution of security filter chain here */ return;
+        }
+
+        /**
+         * Extracting the jwt
+         */
+        jwt = authHeader.substring(7);
+//        jwt = authHeader.replace("Bearer", "").trim();
     }
 }
