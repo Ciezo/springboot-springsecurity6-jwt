@@ -92,10 +92,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                         userDetails.getAuthorities()
                 );
 
-                authenticationToken.setDetails(
+                authenticationToken.setDetails(     // Set the details to update the SecurityContext
                         /* Since the credentials are null. We build the AuthDetails based on request from http */
                         new WebAuthenticationDetailsSource().buildDetails(request)
-                );
+                ); /* Then proceed with updating security context */
+                SecurityContextHolder.getContext().setAuthentication(authenticationToken);
             }
         }
 
