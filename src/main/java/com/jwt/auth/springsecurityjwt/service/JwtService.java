@@ -131,12 +131,24 @@ public class JwtService {
      * Checks the generated token if it is valid, and belongs to the authenticated user
      * @param token is the token to check against the user to be authenticated
      * @param userDetails is the information collected about the user
-     * @return <code>true</code> if token belongs to the user. Otherwise, <code>false</code> if not
+     * @return <code>false</code> if token does not belong to the user. Otherwise, <code>true</code> if it is.
      */
     public boolean isTokenGenValid(String token, UserDetails userDetails) {
         final String username = extractUsername(token);
-        if (username.equals(userDetails.getUsername())) { return true; }
-        else { return false; }
+        return (username.equals(userDetails.getUsername())) && !isTokenExpired(token);
+    }
+
+    /**
+     * Checks if the given token is expired or not
+     * @param token to check
+     * @return <code>false</code> if token is expired. Otherwise, <code>true</code> if not
+     */
+    public boolean isTokenExpired(String token) {
+        return extractExpirationDate(token).before(new Date());
+    }
+
+    public Date extractExpirationDate(String token) {
+        return extractSingleClaim(token, Claims::getExpiration);
     }
 
     /**
