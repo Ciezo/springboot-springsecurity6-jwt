@@ -11,6 +11,12 @@
  *     from the rest of the application, and make it usable onto other parts
  *     such as the presentation layer (Controller) or persistence layer (Repository).
  * </p>
+ *
+ * <p>
+ *     <code>UsernamePasswordAuthenticationToken</code>
+ *     The presentation and implementation of a username and password for User Authentication
+ *     to help them log-in into the system
+ * </p>
  */
 package com.jwt.auth.springsecurityjwt.config;
 
@@ -22,9 +28,12 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.web.authentication.WebAuthenticationDetails;
+import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
@@ -77,6 +86,21 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         if(username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             // Get the user from the database, and check if the user exists in the db
             UserDetails userDetails = this.userDetailsService.loadUserByUsername(username); // fetch user using "username"
+
+            if(jwtService.isTokenGenValid(jwt, userDetails)) {  // If token from the user is valid
+                // Create an authToken to validate username and password of the logging user
+                /* Update the Security Context */
+                UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
+                        userDetails,
+                        null,     // we don't have credentials when we created the user and not logged-in yet
+                        userDetails.getAuthorities()
+                );
+
+                authenticationToken.setDetails(
+                        /* Since the credentials are null. We build the AuthDetails based on request from http */
+                        new WebAuthenticationDetailsSource().buildDetails(request)
+                );
+            }
         }
 
 //        if(email != null && SecurityContextHolder.getContext().getAuthentication() == null) {
