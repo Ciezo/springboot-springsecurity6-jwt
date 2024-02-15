@@ -123,6 +123,7 @@ public class JwtService {
      * @return generated token for the Signing-in user
      */
     public String generateToken(UserDetails userDetails) {
+        /* Store the token in a HashMap format */
         return generateToken(new HashMap<>(), userDetails);
     }
 
