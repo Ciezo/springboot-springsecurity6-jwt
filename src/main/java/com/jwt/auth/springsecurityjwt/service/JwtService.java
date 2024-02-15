@@ -128,6 +128,18 @@ public class JwtService {
     }
 
     /**
+     * Checks the generated token if it is valid, and belongs to the authenticated user
+     * @param token is the token to check against the user to be authenticated
+     * @param userDetails is the information collected about the user
+     * @return <code>true</code> if token belongs to the user. Otherwise, <code>false</code> if not
+     */
+    public boolean isTokenGenValid(String token, UserDetails userDetails) {
+        final String username = extractUsername(token);
+        if (username.equals(userDetails.getUsername())) { return true; }
+        else { return false; }
+    }
+
+    /**
      *
      * @param token to be resolved
      * @param resolvedClaims
