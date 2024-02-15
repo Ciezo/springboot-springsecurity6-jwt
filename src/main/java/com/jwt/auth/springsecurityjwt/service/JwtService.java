@@ -68,6 +68,7 @@ import org.springframework.stereotype.Service;
 
 import java.security.Key;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
@@ -114,6 +115,15 @@ public class JwtService {
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 72))       // three days expiration
                 .signWith(getSignInKey(), SignatureAlgorithm.HS256)
                 .compact();
+    }
+
+    /**
+     * Use this method to generate token based on UserDetails only without using Claims
+     * @param userDetails such as firstname, lastname, username, email, password
+     * @return generated token for the Signing-in user
+     */
+    public String generateToken(UserDetails userDetails) {
+        return generateToken(new HashMap<>(), userDetails);
     }
 
     /**
