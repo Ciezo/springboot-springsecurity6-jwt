@@ -99,6 +99,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 SecurityContextHolder.getContext().setAuthentication(authenticationToken);
             }
         }
+        filterChain.doFilter(request, response);
 
 //        if(email != null && SecurityContextHolder.getContext().getAuthentication() == null) {
 //             UserDetails userDetails = this.userDetailsService.loadUserByEmail(email); // fetch user using "email"
