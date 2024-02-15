@@ -49,10 +49,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             @NonNull HttpServletResponse response,
             @NonNull FilterChain filterChain
     ) throws ServletException, IOException {
-        /**
-         * @// TODO: 2/14/2024
-         * Implement a check jwt auth filter
-         */
         /* The header on User request should have an Auth token */
         final String authHeader = request.getHeader("Authorization");      // We try to extract that from the header
         if(authHeader == null || authHeader.isBlank() || authHeader.isEmpty()
