@@ -74,11 +74,23 @@ public class JwtService {
     private String username;
     private String email;
 
+    /**
+     * username can be used to identify our logged-on user
+     * @param token based on the header of the given request from user.
+     * @return the "username" from the payload
+     */
     public String extractUsername(String token) {
+        username = extractSingleClaim(token, Claims::getSubject);           // Subject here is "username"
         return username;
     }
 
+    /**
+     * email can be used to identify our logged-on user
+     * @param token based on the header of the given request from user.
+     * @return the "email" from the payload
+     */
     public String extractEmail(String token) {
+        email = extractSingleClaim(token, Claims::getSubject);             // Subject here is "email"
         return email;
     }
 
