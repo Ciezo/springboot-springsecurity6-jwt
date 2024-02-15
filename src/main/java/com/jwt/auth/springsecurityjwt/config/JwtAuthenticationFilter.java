@@ -22,6 +22,9 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
@@ -34,6 +37,7 @@ import java.io.IOException;
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     private final JwtService jwtService;
+    private final UserDetailsService userDetailsService;
 
     /**
      * @note The parameters should not be empty!
@@ -67,5 +71,20 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         jwt = authHeader.substring(7);
         username = jwtService.extractUsername(jwt);
         email = jwtService.extractEmail(jwt);
+
+        /** Validate if user is connected and authenticated in the application
+         * .getAuthentication() == null, when user is not authenticated or connected yet */
+        if(username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+            // Get the user from the database, and check if the user exists in the db
+            UserDetails userDetails = this.userDetailsService.loadUserByUsername(username); // fetch user using "username"
+        }
+
+//        if(email != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+//             UserDetails userDetails = this.userDetailsService.loadUserByEmail(email); // fetch user using "email"
+//         /**
+//         * @// TODO: 2/15/2024
+//         * - implement loading the User by Email
+//         */
+//        }
     }
 }
