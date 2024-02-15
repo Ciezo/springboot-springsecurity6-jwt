@@ -58,12 +58,17 @@ package com.jwt.auth.springsecurityjwt.service;
 
 import com.jwt.auth.springsecurityjwt.keys.AESKeyGenerator;
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwt;
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.security.Key;
+import java.util.Date;
+import java.util.Map;
 import java.util.function.Function;
 
 @Service
@@ -92,6 +97,23 @@ public class JwtService {
     public String extractEmail(String token) {
         email = extractSingleClaim(token, Claims::getSubject);             // Subject here is "email"
         return email;
+    }
+
+    /**
+     * Use this method to create a token for the logged-in user who has three days until session expiration
+     * @param extraClaims which are the sub, iat, exp
+     * @param userDetails <code>username</code> or <code>email</code> to identify the logged-on user
+     * @return generated token for the Signing-in user
+     */
+    public String generateToken(Map<String, Object> extraClaims, UserDetails userDetails) {
+        return Jwts
+                .builder()
+                .setClaims(extraClaims)
+                .setSubject(userDetails.getUsername())
+                .setIssuedAt(new Date(System.currentTimeMillis()))
+                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 72))       // three days expiration
+                .signWith(getSignInKey(), SignatureAlgorithm.HS256)
+                .compact();
     }
 
     /**
