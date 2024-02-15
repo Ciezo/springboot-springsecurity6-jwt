@@ -82,8 +82,17 @@ public class JwtService {
         return email;
     }
 
-    public <T> extractSingleClaim(String token, Function<Claims, T> claims) {
-
+    /**
+     *
+     * @param token to be resolved
+     * @param resolvedClaims
+     * @return The resolved single claim based on the token from the payload.
+     * @param <T> generic type
+     */
+    public <T> T extractSingleClaim(String token, Function<Claims, T> resolvedClaims) {
+        /* Extract all claims from the token, and then return the resolved claims */
+        final Claims claims = extractAllClaims(token);
+        return resolvedClaims.apply(claims);
     }
 
     private Claims extractAllClaims(String token) {
