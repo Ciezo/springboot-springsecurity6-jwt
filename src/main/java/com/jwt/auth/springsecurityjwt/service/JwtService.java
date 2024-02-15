@@ -44,6 +44,15 @@
  *     it was sent from the client to the server.
  * </p>
  *
+ *
+ * <p>
+ *     <code>public <T> ...[methood]</code>
+ *     This is a generic type of method.
+ * </p>
+ *
+ * <p>
+ *     Example: public static void nameMethod(BinaryTreeNode<?> t)
+ * </p>
  */
 package com.jwt.auth.springsecurityjwt.service;
 
@@ -55,6 +64,7 @@ import io.jsonwebtoken.security.Keys;
 import org.springframework.stereotype.Service;
 
 import java.security.Key;
+import java.util.function.Function;
 
 @Service
 public class JwtService {
@@ -70,6 +80,10 @@ public class JwtService {
 
     public String extractEmail(String token) {
         return email;
+    }
+
+    public <T> extractSingleClaim(String token, Function<Claims, T> claims) {
+
     }
 
     private Claims extractAllClaims(String token) {
