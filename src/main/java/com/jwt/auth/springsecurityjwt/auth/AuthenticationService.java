@@ -39,7 +39,7 @@ public class AuthenticationService {
      */
     public AuthenticationResponse register(RegisterRequest request) {
         /* Create the User Object */
-        User user = User.builder()
+        var user = User.builder()
                 .firstname(request.getFirstname())
                 .lastname(request.getLastname())
                 .username(request.getUsername())
@@ -48,9 +48,9 @@ public class AuthenticationService {
                 .role(request.getRole())
                 .build();
         /* Save user to database */
-        User savedUserInDb = userRepository.save(user);
+        var savedUserInDb = userRepository.save(user);
         /* Generate a token for the user */
-        String userJwtToken = jwtService.generateToken(savedUserInDb);
+        var userJwtToken = jwtService.generateToken(savedUserInDb);
 
         return AuthenticationResponse.builder()
                 .token(userJwtToken)
@@ -77,7 +77,7 @@ public class AuthenticationService {
         var user = userRepository.findByUsername(request.getUsername())
                         .orElseThrow();
 
-        String authenticatedUserJwtToken = jwtService.generateToken(user);
+        var authenticatedUserJwtToken = jwtService.generateToken(user);
 
         return AuthenticationResponse.builder()
                 .token(authenticatedUserJwtToken)
