@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,6 +12,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class Notes {
 
@@ -20,11 +22,4 @@ public class Notes {
     private String title;
     private String author;
     private String body;
-
-    public Notes(long id, String title, String author, String body) {
-        this.id = id;
-        this.title = title;
-        this.author = author;
-        this.body = body;
-    }
 }
