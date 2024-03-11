@@ -1,0 +1,195 @@
+[
+  {
+    "users": [
+      {
+        "id": "0",
+        "firstname": "Chariz Valerie",
+        "lastname": "Secuya",
+        "username": "cha_chariz@14",
+        "email": "charizvalerie.secuya14@gmail.com",
+        "password": "@098765431!",
+        "role": "USER"
+      },
+      {
+        "id": "1",
+        "firstname": "John",
+        "lastname": "Doe",
+        "username": "john_doe_1",
+        "email": "john.doe@example.com",
+        "password": "P@ssw0rd123",
+        "role": "USER"
+      },
+      {
+        "id": "2",
+        "firstname": "Jane",
+        "lastname": "Smith",
+        "username": "jane_smith_2",
+        "email": "jane.smith@example.com",
+        "password": "Secret123!",
+        "role": "USER"
+      },
+      {
+        "id": "3",
+        "firstname": "Michael",
+        "lastname": "Johnson",
+        "username": "michael_johnson_3",
+        "email": "michael.johnson@example.com",
+        "password": "SecurePass456",
+        "role": "USER"
+      },
+      {
+        "id": "4",
+        "firstname": "Emily",
+        "lastname": "Brown",
+        "username": "emily_brown_4",
+        "email": "emily.brown@example.com",
+        "password": "StrongPwd789",
+        "role": "USER"
+      },
+      {
+        "id": "5",
+        "firstname": "Daniel",
+        "lastname": "Lee",
+        "username": "daniel_lee_5",
+        "email": "daniel.lee@example.com",
+        "password": "SecretCode123",
+        "role": "USER"
+      },
+      {
+        "id": "6",
+        "firstname": "Olivia",
+        "lastname": "Garcia",
+        "username": "olivia_garcia_6",
+        "email": "olivia.garcia@example.com",
+        "password": "SafePass987",
+        "role": "USER"
+      },
+      {
+        "id": "7",
+        "firstname": "William",
+        "lastname": "Martinez",
+        "username": "william_martinez_7",
+        "email": "william.martinez@example.com",
+        "password": "ProtectedPwd123",
+        "role": "USER"
+      },
+      {
+        "id": "8",
+        "firstname": "Sophia",
+        "lastname": "Taylor",
+        "username": "sophia_taylor_8",
+        "email": "sophia.taylor@example.com",
+        "password": "Secure1234!",
+        "role": "USER"
+      },
+      {
+        "id": "9",
+        "firstname": "James",
+        "lastname": "Anderson",
+        "username": "james_anderson_9",
+        "email": "james.anderson@example.com",
+        "password": "SecretPass567",
+        "role": "USER"
+      },
+      {
+        "id": "10",
+        "firstname": "Ava",
+        "lastname": "Hernandez",
+        "username": "ava_hernandez_10",
+        "email": "ava.hernandez@example.com",
+        "password": "ProtectedCode123",
+        "role": "USER"
+      },
+      {
+        "id": "11",
+        "firstname": "Benjamin",
+        "lastname": "Walker",
+        "username": "benjamin_walker_11",
+        "email": "benjamin.walker@example.com",
+        "password": "SafePwd789",
+        "role": "USER"
+      },
+      {
+        "id": "12",
+        "firstname": "Mia",
+        "lastname": "Lopez",
+        "username": "mia_lopez_12",
+        "email": "mia.lopez@example.com",
+        "password": "SecretKey123",
+        "role": "USER"
+      },
+      {
+        "id": "13",
+        "firstname": "Ethan",
+        "lastname": "Gonzalez",
+        "username": "ethan_gonzalez_13",
+        "email": "ethan.gonzalez@example.com",
+        "password": "ProtectedPass456",
+        "role": "USER"
+      },
+      {
+        "id": "14",
+        "firstname": "Liam",
+        "lastname": "Rodriguez",
+        "username": "liam_rodriguez_14",
+        "email": "liam.rodriguez@example.com",
+        "password": "Secret1234",
+        "role": "USER"
+      },
+      {
+        "id": "15",
+        "firstname": "Emma",
+        "lastname": "Perez",
+        "username": "emma_perez_15",
+        "email": "emma.perez@example.com",
+        "password": "ProtectedPwd567",
+        "role": "USER"
+      },
+      {
+        "id": "16",
+        "firstname": "Noah",
+        "lastname": "Rivera",
+        "username": "noah_rivera_16",
+        "email": "noah.rivera@example.com",
+        "password": "SafePass789",
+        "role": "USER"
+      },
+      {
+        "id": "17",
+        "firstname": "Isabella",
+        "lastname": "Gomez",
+        "username": "isabella_gomez_17",
+        "email": "isabella.gomez@example.com",
+        "password": "SecretCode456",
+        "role": "USER"
+      },
+      {
+        "id": "18",
+        "firstname": "Liam",
+        "lastname": "Torres",
+        "username": "liam_torres_18",
+        "email": "liam.torres@example.com",
+        "password": "ProtectedPass123",
+        "role": "USER"
+      },
+      {
+        "id": "19",
+        "firstname": "Ava",
+        "lastname": "Flores",
+        "username": "ava_flores_19",
+        "email": "ava.flores@example.com",
+        "password": "SecureKey789",
+        "role": "USER"
+      },
+      {
+        "id": "20",
+        "firstname": "Oliver",
+        "lastname": "Sanchez",
+        "username": "oliver_sanchez_20",
+        "email": "oliver.sanchez@example.com",
+        "password": "SafePwd123",
+        "role": "USER"
+      }
+    ]
+  }
+]
