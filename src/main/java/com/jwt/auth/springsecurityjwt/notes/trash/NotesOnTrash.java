@@ -1,4 +1,4 @@
-package com.jwt.auth.springsecurityjwt.notes.archive;
+package com.jwt.auth.springsecurityjwt.notes.trash;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class NotesOnArchive {
+public class NotesOnTrash {
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
