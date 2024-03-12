@@ -1,14 +1,5 @@
 [
       {
-        "id": "0",
-        "firstname": "Chariz Valerie",
-        "lastname": "Secuya",
-        "username": "cha_chariz@14",
-        "email": "charizvalerie.secuya14@gmail.com",
-        "password": "@098765431!",
-        "role": "USER"
-      },
-      {
         "id": "1",
         "firstname": "John",
         "lastname": "Doe",
