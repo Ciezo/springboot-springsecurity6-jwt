@@ -1,3 +1,11 @@
+/**
+ * @author Cloyd Van Secuya
+ *
+ * <p>
+ *     The endpoints for Notes related resources are defined here for each respective actions
+ *     such as get, post, put, and delete.
+ * </p>
+ */
 package com.jwt.auth.springsecurityjwt.notes;
 
 import org.springframework.beans.factory.annotation.Autowired;

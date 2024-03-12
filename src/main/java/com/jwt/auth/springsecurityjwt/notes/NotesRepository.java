@@ -1,3 +1,11 @@
+/**
+ * @author Cloyd Van Secuya
+ *
+ * <p>
+ *     `CrudRespository` is inherited here because I am simply trying to perform common CRUD operations
+ *     to handle Notes related resources.
+ * </p>
+ */
 package com.jwt.auth.springsecurityjwt.notes;
 
 import org.springframework.data.repository.CrudRepository;

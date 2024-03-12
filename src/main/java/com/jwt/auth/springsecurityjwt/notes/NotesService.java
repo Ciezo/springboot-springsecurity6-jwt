@@ -1,3 +1,14 @@
+/**
+ * @author Cloyd Van Secuya
+ *
+ * <p>
+ *     This is where most of the logic is defined to handle all types of Notes related resources.
+ * </p>
+ * <p>
+ *     There are sub-types of Notes which are NotesOnArchive - where notes are moved to archive,
+ *     and NoteOnTrash - where the user has an option to permanently delete a note with no option to restore.
+ * </p>
+ */
 package com.jwt.auth.springsecurityjwt.notes;
 
 
@@ -15,7 +26,10 @@ import java.util.Objects;
 import java.util.Optional;
 
 @Service
-public class NotesService implements NotesInterface, NotesOnArchiveInterface, NotesOnTrashInterface {
+public class NotesService implements
+        NotesInterface,
+        NotesOnArchiveInterface,
+        NotesOnTrashInterface {
 
     @Autowired
     private NotesRepository notesRepository;
