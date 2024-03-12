@@ -10,11 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * @// TODO: 3/11/2024
- * - Create a controller endpoint to assign resources for archived notes
- * - Use the NotesService to integrate common notes functions
- */
 @RestController
 @RequestMapping("/api/inkdown/v1/notes-archive")
 public class NotesOnArchiveController {
