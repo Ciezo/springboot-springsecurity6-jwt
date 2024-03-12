@@ -1,6 +1,4 @@
 [
-  {
-    "users": [
       {
         "id": "0",
         "firstname": "Chariz Valerie",
@@ -190,6 +188,4 @@
         "password": "SafePwd123",
         "role": "USER"
       }
-    ]
-  }
 ]

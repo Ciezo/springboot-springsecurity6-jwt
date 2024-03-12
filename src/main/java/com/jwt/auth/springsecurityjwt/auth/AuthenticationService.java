@@ -20,6 +20,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -55,6 +57,39 @@ public class AuthenticationService {
         return AuthenticationResponse.builder()
                 .token(userJwtToken)
                 .build();
+    }
+
+    /**
+     * Create and Register a batch of Users using multiple objects of RegisterRequest
+     * @param requests Lists of RegisterRequest objects
+     * @return registered User with a session and token
+     */
+    public List<AuthenticationResponse> registerBatch(List<RegisterRequest> requests) {
+        List<AuthenticationResponse> responses = new ArrayList<>();
+
+        for (RegisterRequest request : requests) {
+            /* Create the User Object */
+            var user = User.builder()
+                    .firstname(request.getFirstname())
+                    .lastname(request.getLastname())
+                    .username(request.getUsername())
+                    .email(request.getEmail())
+                    .password(pwdEncoder.encode(request.getPassword()))
+                    .role(request.getRole())
+                    .build();
+            /* Save user to database */
+            var savedUserInDb = userRepository.save(user);
+            /* Generate a token for the user */
+            var userJwtToken = jwtService.generateToken(savedUserInDb);
+            /* Create a token for each user */
+            AuthenticationResponse response = AuthenticationResponse.builder()
+                    .token(userJwtToken)
+                    .build();
+            /* Add to the list of authentication responses */
+            responses.add(response);
+        }
+        
+        return responses;
     }
 
     /**

@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1/auth")
 @RequiredArgsConstructor
@@ -22,11 +24,32 @@ public class AuthenticationController {
 
     private final AuthenticationService authService;
 
+    /**
+     * Registers a Single User or Multiple Users
+     * @param request coming from a user or multiple users
+     * @return store user in the database with a token
+     */
     @PostMapping("/register")
-    public ResponseEntity<AuthenticationResponse> register (
-            @RequestBody RegisterRequest request
+    public ResponseEntity<?> register (
+            @RequestBody Object request
     ) {
-        return ResponseEntity.ok(authService.register(request));
+
+        if (request instanceof RegisterRequest) {
+            RegisterRequest singleRequest = (RegisterRequest) request;
+            return ResponseEntity.ok(
+                    authService.register(singleRequest)
+            );
+        } else if (request instanceof List) {
+            List<RegisterRequest> batchRequests = (List<RegisterRequest>) request;
+            return ResponseEntity.ok(
+                    authService.registerBatch(batchRequests)
+            );
+        } else {
+            return ResponseEntity
+                    .badRequest()
+                    .body("Invalid request format");
+        }
+
     }
 
     @PostMapping("/authenticate")
