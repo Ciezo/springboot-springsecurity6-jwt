@@ -99,25 +99,21 @@ public class NotesService implements
 
     @Override
     public NotesOnArchive updateArchiveNote(NotesOnArchive note, long id) {
+        /* NotesOnArchive object to update */
+        NotesOnArchive n = notesArchiveRepository.findById(id).get();
         try {
-            NotesOnArchive n = notesArchiveRepository.findById(id).get();
             if(Objects.nonNull(n)) {
-                NotesOnArchive newNote = new NotesOnArchive(
-                        n.getId(),
-                        n.getFirstname(),
-                        n.getLastname(),
-                        n.getTitle(),
-                        n.getTitle(),
-                        n.getBody()
-                );
-                return notesArchiveRepository.save(newNote);
+                n.setAuthor(note.getAuthor());
+                n.setTitle(note.getTitle());
+                n.setBody(note.getBody());
             }
         } catch(Exception err) {
             System.out.println("Cannot find the archive note resource by " + id);
             System.out.println("Something went wrong: " + err.getMessage());
             throw err;
         }
-        return null;
+
+        return notesArchiveRepository.save(n);
     }
 
     @Override
@@ -140,25 +136,21 @@ public class NotesService implements
 
     @Override
     public NotesOnTrash updateTrashNote(NotesOnTrash note, long id) {
+        /* NotesOnTrash to update */
+        NotesOnTrash n = notesTrashRepository.findById(id).get();
         try {
-            NotesOnTrash n = notesTrashRepository.findById(id).get();
             if(Objects.nonNull(n)) {
-                NotesOnTrash newNote = new NotesOnTrash(
-                        n.getId(),
-                        n.getFirstname(),
-                        n.getLastname(),
-                        n.getTitle(),
-                        n.getTitle(),
-                        n.getBody()
-                );
-                return notesTrashRepository.save(newNote);
+                n.setAuthor(note.getAuthor());
+                n.setTitle(note.getTitle());
+                n.setBody(note.getBody());
             }
         } catch(Exception err) {
             System.out.println("Cannot find the trash note resource by " + id);
             System.out.println("Something went wrong: " + err.getMessage());
             throw err;
         }
-        return null;
+
+        return notesTrashRepository.save(n);
     }
 
     @Override
