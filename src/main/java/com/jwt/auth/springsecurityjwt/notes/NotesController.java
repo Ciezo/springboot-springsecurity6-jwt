@@ -79,6 +79,8 @@ public class NotesController {
         );
     }
 
+    /** Example:
+     * http://localhost:18080/api/inkdown/v1/notes/update-note/id/152 */
     @PutMapping("/update-note/id/{noteId}")
     public ResponseEntity<Notes> updateNote(
             @RequestBody Notes note,
@@ -89,6 +91,9 @@ public class NotesController {
         );
     }
 
+    /**
+     * Example:
+     * http://localhost:18080/api/inkdown/v1/notes/delete-note/id/103 */
     @DeleteMapping("/delete-note/id/{noteId}")
     public void deleteNote(
             @PathVariable("noteId") long id) {
