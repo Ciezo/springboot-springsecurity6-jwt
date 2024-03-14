@@ -79,9 +79,6 @@ public class NotesController {
         );
     }
 
-    /** @// TODO: 3/13/2024 fix this.
-     * The endpoint assigned is okay, however, it only returns
-     * the current or existing note, but <b>not the updated note.</b> */
     @PutMapping("/update-note/id/{noteId}")
     public ResponseEntity<Notes> updateNote(
             @RequestBody Notes note,

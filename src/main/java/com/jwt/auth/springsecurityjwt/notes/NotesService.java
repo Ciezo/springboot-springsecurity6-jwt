@@ -63,23 +63,20 @@ public class NotesService implements
 
     @Override
     public Notes updateNote(Notes note, long id) {
+        /* Notes object to update  */
+        Notes n = notesRepository.findById(id).get();
         try {
-            Notes n = notesRepository.findById(id).get();
             if(Objects.nonNull(n)) {
-                Notes newNote = new Notes(
-                        n.getId(),
-                        n.getTitle(),
-                        n.getAuthor(),
-                        n.getBody()
-                );
-                return notesRepository.save(newNote);
+                n.setAuthor(note.getAuthor());
+                n.setTitle(note.getTitle());
+                n.setBody(note.getBody());
             }
         } catch(Exception err) {
             System.out.println("Cannot find the note resource by " + id);
             System.out.println("Something went wrong: " + err.getMessage());
             throw err;
         }
-        return null;
+        return notesRepository.save(n);
     }
 
     @Override
