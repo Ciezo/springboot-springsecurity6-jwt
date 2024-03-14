@@ -17,26 +17,6 @@ import java.util.List;
 import java.util.Optional;
 
 
-/**
- * @TODO
- * - IMPLEMENT QUERY PARAMETERS.
- *   My mapping and endpoints are very ambiguous. Hence, an error occurs:
- *
- *   ```java.lang.IllegalStateException: Ambiguous handler methods mapped for '/api/inkdown/v1/notes/104'```
- *
- *   A query parameter is used to identify different types of resources using a specific endpoint.
- *   Examples:
- *   http://localhost:18080/api/inkdown/v1/notes/104
- *
- *       - where this URL is using Id to GET a single Note.
- *
- *   http://localhost:18080/api/inkdown/v1/notes?title=Sharks
- *
- *       - where this URL is using GET to identify a single Note by title.
- *
- *  In conclusion, it is better to implement both ways, /id and /{param}, to GET or Map a resource.
- *
- */
 @RestController
 @RequestMapping("/api/inkdown/v1/notes")
 public class NotesController {
@@ -52,41 +32,44 @@ public class NotesController {
         );
     }
 
-    @GetMapping("/{noteId}")
+    /** Example:
+     * http://localhost:18080/api/inkdown/v1/notes/id/104 */
+    @GetMapping("/id/{noteId}")
     public ResponseEntity<Optional<Notes>> getSingleNoteByID(
-            @PathVariable("noteId") long noteId) {
+            @PathVariable("noteId")
+            long noteId) {
         return new ResponseEntity<>(
                 service.findNoteById(noteId),
                 HttpStatus.OK
         );
     }
 
-    /** @// TODO: 3/13/2024 fix this.
-     * This is an ambiguous endpoint
-     * I must use a query parameter, /notes?title=""
-     * <b>Use the @RequestParam in the argument</b>*/
-    @GetMapping("/{noteTitle}")
-    public ResponseEntity<Optional<Notes>> getSingleNoteByTitle
-            (@PathVariable("noteTitle") String noteTitle) {
-        return new ResponseEntity<>(
-                service.findNoteByTitle(noteTitle),
-                HttpStatus.OK
-        );
-    }
-
-    /** @// TODO: 3/13/2024 fix this.
-     * This is an ambiguous endpoint
-     * I must use a query parameter, /notes?author=""
-     * <b>Use the @RequestParam in the argument</b>*/
-    @GetMapping("/{noteAuthor}")
+    /** Example:
+     * http://localhost:18080/api/inkdown/v1/notes/author?author=cloydvan */
+    @GetMapping("/author")
     public ResponseEntity<Optional<Notes>> getSingleNoteByAuthor(
-            @PathVariable("noteAuthor") String noteAuthor) {
+            @RequestParam(value = "author")
+            String author) {
         return new ResponseEntity<>(
-                service.findNoteByAuthor(noteAuthor),
+                service.findNoteByAuthor(author),
                 HttpStatus.OK
         );
     }
 
+    /** Example:
+     * http://localhost:18080/api/inkdown/v1/notes/title?=sharks */
+    @GetMapping("/title")
+    public ResponseEntity<Optional<Notes>> getSingleNoteByTitle (
+            @RequestParam(value = "title")
+            String title) {
+        return new ResponseEntity<>(
+                service.findNoteByTitle(title),
+                HttpStatus.OK
+        );
+    }
+
+    /** Example:
+     * http://localhost:18080/api/inkdown/v1/notes */
     @PostMapping()
     public ResponseEntity<Notes> createNote(
             @RequestBody Notes notes) {
