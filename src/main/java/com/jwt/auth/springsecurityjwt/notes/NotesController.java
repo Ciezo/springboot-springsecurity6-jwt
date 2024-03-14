@@ -89,9 +89,6 @@ public class NotesController {
         );
     }
 
-    /** @TODO: 3/13/2024 test this.
-     * I have not tested this yet. I hope it works when the time comes
-     * :crying_emoji: :crying_emoji: :crying_emoji: :crying_emoji: */
     @DeleteMapping("/delete-note/id/{noteId}")
     public void deleteNote(
             @PathVariable("noteId") long id) {
