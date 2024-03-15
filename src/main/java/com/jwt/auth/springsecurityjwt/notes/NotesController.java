@@ -16,7 +16,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-
+/**
+ * @// TODO: 3/15/2024
+ * - Create an endpoint to find all notes by one author based on username.
+ */
 @RestController
 @RequestMapping("/api/inkdown/v1/notes")
 public class NotesController {
