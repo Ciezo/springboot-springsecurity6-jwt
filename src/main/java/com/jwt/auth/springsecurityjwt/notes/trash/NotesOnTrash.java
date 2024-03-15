@@ -18,6 +18,6 @@ public class NotesOnTrash {
     private long id;
     private String title;
     private String author;
-    @Column(columnDefinition = "TEXT")
+    @Column(columnDefinition = "LONGTEXT")
     private String body;
 }
