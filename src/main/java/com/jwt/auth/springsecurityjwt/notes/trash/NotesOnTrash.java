@@ -1,9 +1,6 @@
 package com.jwt.auth.springsecurityjwt.notes.trash;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,9 +16,8 @@ public class NotesOnTrash {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
     private long id;
-    private String firstname;
-    private String lastname;
     private String title;
     private String author;
+    @Column(columnDefinition = "TEXT")
     private String body;
 }
