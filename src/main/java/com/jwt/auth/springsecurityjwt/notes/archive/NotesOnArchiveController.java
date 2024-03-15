@@ -1,6 +1,5 @@
 package com.jwt.auth.springsecurityjwt.notes.archive;
 
-import com.jwt.auth.springsecurityjwt.notes.Notes;
 import com.jwt.auth.springsecurityjwt.notes.NotesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
