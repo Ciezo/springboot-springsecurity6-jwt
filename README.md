@@ -42,6 +42,32 @@ Isolation:
 This is a RESTful Backend API for <i>Inkdown - `React.js` note take app</i> 
 which allows us to write down, archive, and trash notes.
 
+### Integration to React.js (frontend)
+
+To do integrate this backend application to frontend. It is necessary to allow _CORS configuration_
+It is important to note that when applications are served, it is usually configured to only allow requests and response 
+within its own domain. 
+
+This means that, say, an app serving at localhost:3000 can only accept requests and responses from 
+`http://localhost:3000/*/`, where `*` is any path. And so, this also works with other enterprise domains 
+or domain name like, https://www.examplesecuredomain.com/ or https://www.examplesecuredomain.com:8000/
+
+Take note that the said example domains are not allowing to accept requests or responses outside its 
+namespace. To get around this, we need to allow `CORS` or _Cross-Origin-Resource Sharing_.
+
+In layman terms, this backend is an application, my other application, Inkdown (React.js) is also an application.
+And, to bridge or integrate them both is to use CORS using `@CrossOrigin` annotation.
+
+> Cross-origin resource sharing (CORS) is a mechanism for integrating applications. 
+> CORS defines a way for client web applications that are loaded in one domain to interact with resources in a different domain
+> Reference: 
+> https://aws.amazon.com/what-is/cross-origin-resource-sharing/#:~:text=your%20CORS%20requirements%3F-,What%20is%20Cross%2DOrigin%20Resource%20Sharing%3F,resources%20in%20a%20different%20domain.
+
+> Before CORS became standarized there was no way to call an API endpoint under different domain for security reasons. 
+> This was (and to some degree still is) blocked by the Same-Origin Policy.
+> Reference: 
+> https://medium.com/@baphemot/understanding-cors-18ad6b478e2b
+
 ### General Objective 
 
 Inkdown REST API, is a `Spring Boot` Backend Application that serves to handle resources related to `UserDetails` 
