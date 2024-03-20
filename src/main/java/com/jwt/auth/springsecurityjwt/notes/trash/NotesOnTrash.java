@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 public class NotesOnTrash {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String title;
     private String author;

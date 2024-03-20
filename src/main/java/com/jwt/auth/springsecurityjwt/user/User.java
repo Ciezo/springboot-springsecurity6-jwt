@@ -71,7 +71,7 @@ import java.util.List;
 public class User implements UserDetails {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)         // .TABLE is for MySQL
+    @GeneratedValue(strategy = GenerationType.AUTO)         // .TABLE is for MySQL
     private long id;
     private String firstname;
     private String lastname;
