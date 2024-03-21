@@ -34,6 +34,18 @@ public class NotesController {
     }
 
     /** Example:
+     * http://localhost:18080/api/inkdown/v1/notes/user/1 */
+    @GetMapping("/user/{id}")
+    public ResponseEntity<List<Notes>> findAllNotesByUserId
+            (@PathVariable long id) {
+        List<Notes> userNotes = service.findAllNotesByUserId(id);
+        if (userNotes.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(userNotes, HttpStatus.OK);
+    }
+
+    /** Example:
      * http://localhost:18080/api/inkdown/v1/notes/id/104 */
     @GetMapping("/id/{noteId}")
     public ResponseEntity<Optional<Notes>> getSingleNoteByID(

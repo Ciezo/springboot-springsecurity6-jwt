@@ -19,9 +19,11 @@ import com.jwt.auth.springsecurityjwt.notes.trash.NotesOnTrash;
 import com.jwt.auth.springsecurityjwt.notes.trash.NotesOnTrashInterface;
 import com.jwt.auth.springsecurityjwt.notes.trash.NotesOnTrashRepository;
 import com.jwt.auth.springsecurityjwt.user.User;
+import com.jwt.auth.springsecurityjwt.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -31,6 +33,9 @@ public class NotesService implements
         NotesInterface,
         NotesOnArchiveInterface,
         NotesOnTrashInterface {
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Autowired
     private NotesRepository notesRepository;
@@ -43,6 +48,18 @@ public class NotesService implements
 
     public List<Notes> findAllNotes() {
         return (List<Notes>) notesRepository.findAll();
+    }
+
+    public List<Notes> findAllNotesByUserId(long id) {
+        /* Find the User associated with the particular Notes */
+        User user = userRepository.findById(id)
+                .orElse(null);
+
+        if(user == null){
+            return Collections.emptyList();
+        }
+
+        return notesRepository.findByUser(user);
     }
 
     public Optional<Notes> findNoteById(long id) {
