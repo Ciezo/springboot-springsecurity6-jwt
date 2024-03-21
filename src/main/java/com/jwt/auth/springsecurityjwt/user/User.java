@@ -51,6 +51,7 @@
  */
 package com.jwt.auth.springsecurityjwt.user;
 
+import com.jwt.auth.springsecurityjwt.notes.Notes;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -72,6 +73,7 @@ public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)         // .TABLE is for MySQL
+    @Column(name = "user_id")
     private long id;
     private String firstname;
     private String lastname;

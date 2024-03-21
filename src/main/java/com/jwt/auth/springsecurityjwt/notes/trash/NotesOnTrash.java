@@ -15,6 +15,7 @@ public class NotesOnTrash {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "note_on_trash_id")
     private long id;
     private String title;
     private String author;

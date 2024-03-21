@@ -8,6 +8,7 @@
  */
 package com.jwt.auth.springsecurityjwt.notes;
 
+import com.jwt.auth.springsecurityjwt.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -72,9 +73,12 @@ public class NotesController {
      * http://localhost:18080/api/inkdown/v1/notes */
     @PostMapping()
     public ResponseEntity<Notes> createNote(
-            @RequestBody Notes notes) {
+            @RequestBody NoteRequest noteRequest) {
         return new ResponseEntity<>(
-                service.addNote(notes),
+                service.addNote(
+                        noteRequest.getNote(),
+                        noteRequest.getUser()
+                ),
                 HttpStatus.OK
         );
     }

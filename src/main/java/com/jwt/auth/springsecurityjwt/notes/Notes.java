@@ -16,11 +16,13 @@
  */
 package com.jwt.auth.springsecurityjwt.notes;
 
+import com.jwt.auth.springsecurityjwt.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Cascade;
 
 @Data
 @Builder
@@ -31,9 +33,14 @@ public class Notes {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "note_id")
     private long id;
     private String title;
     private String author;
     @Column(columnDefinition = "LONGTEXT")
     private String body;
+
+    @ManyToOne()
+    @JoinColumn(name = "fk_user_id")
+    private User user;
 }

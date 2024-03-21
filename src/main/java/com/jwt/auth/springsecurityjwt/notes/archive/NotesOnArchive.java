@@ -15,6 +15,7 @@ public class NotesOnArchive {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "note_on_archive_id")
     private long id;
     private String title;
     private String author;

@@ -18,6 +18,7 @@ import com.jwt.auth.springsecurityjwt.notes.archive.NotesOnArchiveRepository;
 import com.jwt.auth.springsecurityjwt.notes.trash.NotesOnTrash;
 import com.jwt.auth.springsecurityjwt.notes.trash.NotesOnTrashInterface;
 import com.jwt.auth.springsecurityjwt.notes.trash.NotesOnTrashRepository;
+import com.jwt.auth.springsecurityjwt.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -57,7 +58,8 @@ public class NotesService implements
     }
 
     @Override
-    public Notes addNote(Notes note) {
+    public Notes addNote(Notes note, User user) {
+        note.setUser(user);
         return notesRepository.save(note);
     }
 
