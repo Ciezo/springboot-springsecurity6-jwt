@@ -12,7 +12,7 @@ public class UserController {
 
     @Autowired
     private UserService service;
-
+    // This endpoint does not require Authentication
     @GetMapping("/{username}")
     public ResponseEntity<Long> getUserIdByUsername(
             @PathVariable("username")
