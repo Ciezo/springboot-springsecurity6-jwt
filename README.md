@@ -1,3 +1,7 @@
+### Check out the frontend!
+
+<a href="https://github.com/Ciezo/note-taking-react-app-client">Inkdown (React.js)</a>
+
 ### Backend Development and Mental Health
 
 > Feeling burnout in backend development, especially when working with REST APIs using Spring Boot and Java, is completely normal. 
