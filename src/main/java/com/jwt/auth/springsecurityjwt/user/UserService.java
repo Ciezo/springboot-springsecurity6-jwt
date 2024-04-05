@@ -3,6 +3,7 @@ package com.jwt.auth.springsecurityjwt.user;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -25,5 +26,20 @@ public class UserService {
             userId = existingUser.get().getId();
         }
         return userId;
+    }
+
+    /**
+     * Get all `UserDetails` based on id (PRIMARY KEY).
+     * We can use this method to extract details about our User who is logged-in or
+     * currently in session in the application.
+     *
+     * Furthermore, we only want to allow general information about the User, and so,
+     * we return the common details.
+     * @param id
+     * @return `UserDetails` such as firstname, lastname, username, and email
+     */
+    public Optional<User> getAllUserDetailsByUserId(long id) {
+        Optional<User> user = userRepository.findById(id);
+        return user;
     }
 }
